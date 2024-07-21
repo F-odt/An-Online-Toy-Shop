@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Your Cart - Kids Toy Store{% endblock %}
+
+{% block content %}
+<h1>Your Shopping Cart</h1>
+<div id="cart-items">
+    <!-- Cart items will be dynamically inserted here -->
+</div>
+<div id="cart-total">
+    <p>Total: <span id="cart-total-amount"></span></p>
+</div>
+<a href="{{ url_for('main.checkout') }}" class="btn">Proceed to Checkout</a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        displayCart();
+    });
+</script>
+
+
+{% endblock %}

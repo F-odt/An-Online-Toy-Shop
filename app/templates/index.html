@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Kids Toy Store - Home{% endblock %}
+
+{% block content %}
+<h1>Welcome to Kids Toy Store</h1>
+<div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.price_usd | format_currency('USD') }}</p>
+        <a href="{{ url_for('main.product', product_id=product.id) }}" class="btn">View Details</a>
+        <button onclick="addToCart({{ product.id }}, '{{ product.name }}', {{ product.price_usd }})" class="btn">Add to Cart</button>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - Kids Toy Store{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <img src="{{ product.image_url }}" alt="{{ product.name }}">
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price_usd | format_currency('USD') }}</p>
+    <button onclick="addToCart({{ product.id }}, '{{ product.name }}', {{ product.price_usd }})" class="btn">Add to Cart</button>
+</div>
+{% endblock %}

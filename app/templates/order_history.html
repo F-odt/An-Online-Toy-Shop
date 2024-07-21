@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Order History - Kids Toy Store{% endblock %}
+
+{% block content %}
+<h1>Your Order History</h1>
+{% if orders %}
+    <ul class="order-list">
+    {% for order in orders %}
+        <li class="order-item">
+            <h3>Order #{{ order.id }}</h3>
+            <p>Date: {{ order.date_ordered.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+            <p>Total: {{ order.total_amount | format_currency(order.currency) }}</p>
+            <ul class="order-items">
+            {% for item in order.items %}
+                <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Price: {{ item.price | format_currency(order.currency) }}</li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You haven't placed any orders yet.</p>
+{% endif %}
+{% endblock %}
